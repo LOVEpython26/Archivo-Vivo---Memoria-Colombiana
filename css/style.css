@@ -286,21 +286,15 @@ body {
 
 .carousel-track {
   width: calc((var(--card-width) * 3) + 4.5rem);
-
   max-width: 100%;
-
   display: flex;
   align-items: center;
-
+  justify-content: center; /* <--- LÍNEA AGREGADA */
   gap: 2.25rem;
-
   overflow: hidden;
-
   position: relative;
-
   flex-shrink: 0;
 }
-
 
 /*
    Contenedor interno opcional si el JS lo utiliza.
@@ -346,40 +340,29 @@ body {
 }
 
 
-/*
-   Tarjeta anterior
-*/
-
+/* Tarjeta anterior */
 .carousel-track .card.prev {
   opacity: 0.65;
   transform: scale(0.94);
+  order: 1; /* Forzamos a que siempre se dibuje a la izquierda */
 }
 
-
-/*
-   Tarjeta central
-*/
-
+/* Tarjeta central */
 .carousel-track .card.active {
   opacity: 1;
-
   transform:
     translateY(-4px)
     scale(1);
-
   z-index: 2;
+  order: 2; /* Forzamos a que siempre se dibuje en el centro */
 }
 
-
-/*
-   Tarjeta siguiente
-*/
-
+/* Tarjeta siguiente */
 .carousel-track .card.next {
   opacity: 0.65;
   transform: scale(0.94);
+  order: 3; /* Forzamos a que siempre se dibuje a la derecha */
 }
-
 
 /*
    Tarjetas que no están visibles.
