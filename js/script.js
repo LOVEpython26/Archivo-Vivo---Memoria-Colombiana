@@ -319,14 +319,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput && searchForm) {
     
     const filterCatalogCards = (query) => {
+      // 1. Limpiamos la búsqueda del usuario (quitamos tildes)
+      const queryLimpio = query.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
       cards.forEach(card => {
         const titleEl = card.querySelector('.card-title, h2, h3');
-        const titleText = titleEl ? titleEl.textContent.toLowerCase() : '';
-
-        if (titleText.includes(query)) {
+        // 2. Limpiamos también el título de la tarjeta (quitamos tildes y pasamos a minúsculas)
+        const titleText = titleEl 
+        ? titleEl.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") 
+        : '';
+      
+        // 3. Comparamos los dos textos ya limpios
+        if (titleText.includes(queryLimpio)) {
           card.style.display = '';
+      
         } else {
           card.style.display = 'none';
+      
         }
       });
 
@@ -365,8 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault(); 
-      const query = searchInput.value.trim();
-
+      const query = searchInput.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      
       if (!isCatalog) {
         if (query) {
           window.location.href = `catalogo.html?search=${encodeURIComponent(query)}`;
