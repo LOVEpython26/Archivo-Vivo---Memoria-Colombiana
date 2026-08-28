@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Policarpa Salavarrieta - Archivo Vivo</title>
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Encabezado: Logo y Barra de Búsqueda -->
+  <header class="header">
+    <div class="logo">
+      <a href="index.html" class="logo-link" aria-label="Ir a página de inicio">
+        <h1>ARCHIVO VIVO</h1>
+      </a>
+    </div>
+
+    <form class="search-bar" role="search">
+      <input 
+        type="search" 
+        class="search-input" 
+        placeholder="¿En qué personaje estás pensando hoy?" 
+        aria-label="Buscar personaje histórico"
+      >
+      <button type="submit" class="search-btn" aria-label="Buscar">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </form>
+  </header>
+
+  <!-- Contenido Principal de la Ficha del Personaje -->
+  <main class="character-main">
+    
+    <!-- Barra Superior de Navegación y Filtros Documentales -->
+    <nav class="character-nav-bar" aria-label="Navegación del personaje y filtros documentales">
+      <a href="catalogo.html" class="back-btn back-btn--simple" aria-label="Volver al catálogo">
+        &lt; VOLVER
+      </a>
+
+      <div class="media-filters" role="tablist" aria-label="Filtrar por tipo de pieza documental">
+        <button type="button" class="media-filter-btn active" role="tab" aria-selected="true">TODOS</button>
+        <button type="button" class="media-filter-btn" role="tab" aria-selected="false">VIDEO</button>
+        <button type="button" class="media-filter-btn" role="tab" aria-selected="false">AUDIO</button>
+        <button type="button" class="media-filter-btn" role="tab" aria-selected="false">DOCUMENTOS</button>
+      </div>
+    </nav>
+
+    <!-- Sección Principal del Personaje (Hero Layout a 2 Columnas) -->
+    <section class="character-hero" aria-labelledby="character-name">
+      
+      <!-- Columna Izquierda: Retrato en Marco Rectangular -->
+      <div class="character-portrait-wrapper">
+        <div class="character-portrait-frame">
+          <img src="assets/img/policarpa.jpg" alt="Retrato histórico de Policarpa Salavarrieta" class="character-portrait-img">
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Información Biográfica y Metadatos -->
+      <div class="character-details">
+        <h1 id="character-name" class="character-name">POLICARPA SALAVARRIETA</h1>
+        <p class="character-lifespan">1795 — 1817</p>
+
+        <div class="character-bio">
+          <p>
+            Heroína de la Independencia de Colombia, conocida popularmente como «La Pola». Desarrolló labores de inteligencia y espionaje cruciales para las fuerzas patriotas durante la Reconquista española en Santafé de Bogotá, transmitiendo información estratégica, reclutando jóvenes y facilitando suministros a los combatientes independentistas hasta su captura y posterior fusilamiento en la Plaza Mayor.
+          </p>
+        </div>
+
+        <a href="https://es.wikipedia.org/wiki/Policarpa_Salavarrieta" target="_blank" rel="noopener noreferrer" class="character-wiki-link">
+          <span>LEER MÁS EN WIKIPEDIA</span>
+          <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+
+        <div class="character-pieces-count">
+          <span class="count-text">0 PIEZAS EN EL FONDO DOCUMENTAL</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Sección Inferior: Estado Inicial del Fondo Documental -->
+    <section class="character-archive-section" aria-label="Fondo documental del personaje">
+      <div class="empty-archive-state">
+        <p class="empty-archive-msg">PRÓXIMAMENTE PIEZAS DOCUMENTALES DE ESTE PERSONAJE</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="footer catalog-footer">
+    <p class="footer-text">ARCHIVO VIVO • Memoria Histórica Colombiana</p>
+  </footer>
+
+  <!-- Lógica de Interacción -->
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Histórico - Archivo Vivo</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ================================================================
+       ENCABEZADO
+       ================================================================ -->
+  <header class="header">
+
+    <div class="logo">
+      <a href="index.html" class="logo-link" aria-label="Ir a página de inicio">
+        <h1>ARCHIVO VIVO</h1>
+      </a>
+    </div>
+
+    <form class="search-bar" role="search">
+
+      <input
+        type="search"
+        class="search-input"
+        placeholder="¿En qué personaje estás pensando hoy?"
+        aria-label="Buscar personaje histórico"
+      >
+
+      <button
+        type="submit"
+        class="search-btn"
+        aria-label="Buscar"
+      >
+        <svg
+          class="search-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+
+    </form>
+
+  </header>
+
+
+  <!-- ================================================================
+       CONTENIDO PRINCIPAL
+       ================================================================ -->
+  <main class="catalog-main">
+
+    <!-- Navegación de regreso -->
+    <div class="catalog-top-nav">
+
+      <a
+        href="index.html"
+        class="back-btn"
+        aria-label="Volver a la página principal"
+      >
+
+        <svg
+          class="back-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+
+        <span>Volver al inicio</span>
+
+      </a>
+
+    </div>
+
+
+    <!-- ================================================================
+         FILTROS
+         ================================================================ -->
+    <nav
+      class="catalog-filters"
+      aria-label="Filtrar por época histórica"
+    >
+
+      <button
+        type="button"
+        class="filter-btn active"
+        data-filter="all"
+      >
+        Todos
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="revolucion"
+      >
+        Revolución e Independencia
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="siglo-xix"
+      >
+        Siglo XIX
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="siglo-xx"
+      >
+        Siglo XX / Finales de Siglo
+      </button>
+
+    </nav>
+
+
+    <!-- ================================================================
+         CONTENIDO DEL CATÁLOGO
+         ================================================================ -->
+    <div class="catalog-content">
+
+
+      <!-- ============================================================
+           REVOLUCIÓN E INDEPENDENCIA
+           ============================================================ -->
+      <section
+        class="catalog-section"
+        data-category="revolucion"
+        aria-labelledby="title-revolucion"
+      >
+
+        <div class="section-header">
+
+          <h2
+            id="title-revolucion"
+            class="section-title"
+          >
+            Revolución e Independencia
+          </h2>
+
+          <span class="section-line"></span>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+          <!-- Policarpa Salavarrieta -->
+          <article
+            class="card"
+            data-id="policarpa"
+          >
+
+            <div class="card-media">
+
+              <img
+                src="assets/img/policarpa.jpg"
+                alt="Retrato de Policarpa Salavarrieta"
+                class="card-img"
+              >
+
+              <div class="card-info">
+
+                <h3 class="card-title">
+                  Policarpa Salavarrieta
+                </h3>
+
+                <p class="card-meta">
+                  1795 — 1817 • 0 PIEZAS
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+          <!-- Francisco de Paula Santander -->
+          <article
+            class="card"
+            data-id="santander"
+          >
+
+            <div class="card-media">
+
+              <img
+                src="assets/img/santander.jpg"
+                alt="Retrato de Francisco de Paula Santander"
+                class="card-img"
+              >
+
+              <div class="card-info">
+
+                <h3 class="card-title">
+                  Francisco de Paula Santander
+                </h3>
+
+                <p class="card-meta">
+                  1792 — 1840 • 0 PIEZAS
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ============================================================
+           SIGLO XIX
+           ============================================================ -->
+      <section
+        class="catalog-section"
+        data-category="siglo-xix"
+        aria-labelledby="title-siglo-xix"
+      >
+
+        <div class="section-header">
+
+          <h2
+            id="title-siglo-xix"
+            class="section-title"
+          >
+            Siglo XIX y Consolidación Republicana
+          </h2>
+
+          <span class="section-line"></span>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+          
+
+        </div>
+
+      </section>
+
+
+      <!-- ============================================================
+           SIGLO XX
+           ============================================================ -->
+      <section
+        class="catalog-section"
+        data-category="siglo-xx"
+        aria-labelledby="title-siglo-xx"
+      >
+
+        <div class="section-header">
+
+          <h2
+            id="title-siglo-xx"
+            class="section-title"
+          >
+            Siglo XX y Colombia Contemporánea
+          </h2>
+
+          <span class="section-line"></span>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+          <!-- Jaime Garzón -->
+          <article
+            class="card"
+            data-id="garzon"
+          >
+
+            <div class="card-media">
+
+              <img
+                src="assets/img/jaime-garzon.jpg"
+                alt="Retrato de Jaime Garzón"
+                class="card-img"
+              >
+
+              <div class="card-info">
+
+                <h3 class="card-title">
+                  Jaime Garzón
+                </h3>
+
+                <p class="card-meta">
+                  1960 — 1999 • 0 PIEZAS
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- Jorge Eliécer Gaitán -->
+          <article
+            class="card"
+            data-id="gaitan"
+          >
+
+            <div class="card-media">
+
+              <img
+                src="assets/img/gaitan.jpg"
+                alt="Retrato de Jorge Eliécer Gaitán"
+                class="card-img"
+              >
+
+              <div class="card-info">
+
+                <h3 class="card-title">
+                  Jorge Eliécer Gaitán
+                </h3>
+
+                <p class="card-meta">
+                  1898 — 1948 • 0 PIEZAS
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+          <!-- José Antonio Galán -->
+          <article
+            class="card"
+            data-id="galan"
+          >
+
+            <div class="card-media">
+
+              <img
+                src="assets/img/galan.jpg"
+                alt="Retrato de José Antonio Galán"
+                class="card-img"
+              >
+
+              <div class="card-info">
+
+                <h3 class="card-title">
+                  Luis Carlos Galán
+                </h3>
+
+                <p class="card-meta">
+                  1943 — 1989 • 0 PIEZAS
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- ================================================================
+       PIE DE PÁGINA
+       ================================================================ -->
+  <footer class="footer catalog-footer">
+
+    <p class="footer-text">
+      ARCHIVO VIVO • Memoria Histórica Colombiana
+    </p>
+
+  </footer>
+
+
+  <!-- ================================================================
+       JAVASCRIPT
+       ================================================================ -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>

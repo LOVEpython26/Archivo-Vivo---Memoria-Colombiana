@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archivo Vivo - Memoria Histórica</title>
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Separación y distribución segura entre bloques */
+    * {
+      box-sizing: border-box;
+    }
+
+    .header,
+    .main-content,
+    .footer {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .main-content {
+      padding: 2rem 1rem;
+    }
+
+    .carousel {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1.5rem;
+      flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+      padding: 1rem;
+      scroll-behavior: smooth;
+    }
+
+    .card {
+      flex: 0 0 min(80vw, 320px);
+      margin: 0;
+    }
+
+    .card-media {
+      overflow: hidden;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .footer {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .carousel {
+        gap: 0.5rem;
+      }
+
+      .carousel-track {
+        gap: 1rem;
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado: Logo y Barra de Búsqueda -->
+  <header class="header">
+    <div class="logo">
+      <h1>ARCHIVO VIVO</h1>
+    </div>
+
+    <form class="search-bar" role="search">
+      <input 
+        type="search" 
+        class="search-input" 
+        placeholder="¿En qué personaje estás pensando hoy?" 
+        aria-label="Buscar personaje histórico"
+      >
+      <button type="submit" class="search-btn" aria-label="Buscar">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </form>
+  </header>
+
+  <!-- Contenido Principal: Carrusel de Personajes -->
+  <main class="main-content">
+    <section class="carousel-section" aria-label="Carrusel de Personajes Históricos">
+      
+      <!-- Contenedor del Carrusel -->
+      <div class="carousel">
+        <!-- Botón Navegación Izquierda -->
+        <button class="carousel-btn prev-btn" aria-label="Personaje anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Pista de Tarjetas -->
+        <div class="carousel-track">
+          
+          <!-- Tarjeta 1: Jaime Garzón -->
+          <article class="card">
+            <div class="card-media">
+              <img src="assets/img/jaime-garzon.jpg" alt="Retrato de Jaime Garzón" class="card-img">
+              <div class="card-info">
+                <h2 class="card-title">Jaime Garzón</h2>
+                <p class="card-meta">1960 — 1999 • 0 PIEZAS</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 2: Policarpa Salavarrieta (Destacada / Activa) -->
+          <article class="card active highlight">
+            <div class="card-media">
+              <img src="assets/img/policarpa.jpg" alt="Retrato de Policarpa Salavarrieta" class="card-img">
+              <div class="card-info">
+                <h2 class="card-title">Policarpa Salavarrieta</h2>
+                <p class="card-meta">1795 — 1817 • 0 PIEZAS</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 3: Francisco de Paula Santander -->
+          <article class="card">
+            <div class="card-media">
+              <img src="assets/img/santander.jpg" alt="Retrato de Francisco de Paula Santander" class="card-img">
+              <div class="card-info">
+                <h2 class="card-title">Francisco de Paula Santander</h2>
+                <p class="card-meta">1792 — 1840 • 0 PIEZAS</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 4: José Antonio Galán -->
+          <article class="card" data-id="galan">
+            <div class="card-media">
+              <img src="assets/img/galan.jpg" alt="Retrato de Luis Carlos Galán" class="card-img">
+              <div class="card-info">
+                <h2 class="card-title">Luis Carlos Galán</h2>
+                <p class="card-meta">1943 — 1989 • 0 PIEZAS</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 5: Jorge Eliécer Gaitán -->
+          <article class="card" data-id="gaitan">
+            <div class="card-media">
+              <img src="assets/img/gaitan.jpg" alt="Retrato de Jorge Eliécer Gaitán" class="card-img">
+              <div class="card-info">
+                <h2 class="card-title">Jorge Eliécer Gaitán</h2>
+                <p class="card-meta">1898 — 1948 • 0 PIEZAS</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Botón Navegación Derecha -->
+        <button class="carousel-btn next-btn" aria-label="Siguiente personaje">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Indicadores de Paginación -->
+      <div class="carousel-dots" role="tablist" aria-label="Paginación de personajes">
+        <button class="dot" role="tab" aria-label="Ir a Jaime Garzón" aria-selected="false"></button>
+        <button class="dot active" role="tab" aria-label="Ir a Policarpa Salavarrieta" aria-selected="true"></button>
+        <button class="dot" role="tab" aria-label="Ir a Francisco de Paula Santander" aria-selected="false"></button>
+        <button class="dot" role="tab" aria-label="Ir a José Antonio Galán" aria-selected="false"></button>
+        <button class="dot" role="tab" aria-label="Ir a Jorge Eliécer Gaitán" aria-selected="false"></button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Pie de Página: Botón de Acción -->
+  <footer class="footer">
+    <button type="button" class="discover-btn" onclick="window.location.href='catalogo.html'">DESCUBRE MÁS</button>
+  </footer>
+
+  <!-- Lógica de Interacción -->
+  <script src="js/script.js"></script>
+</body>
+</html>
