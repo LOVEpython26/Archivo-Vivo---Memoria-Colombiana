@@ -1213,7 +1213,15 @@ body {
   }
 
   .carousel-btn {
-    display: none;
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+  }
+
+  .carousel-btn svg {
+    width: 18px;
+    height: 18px;
   }
 
 
