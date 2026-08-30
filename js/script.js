@@ -2,6 +2,13 @@
 // Base de Datos Local de Personajes Históricos
 // ==========================================================================
 const personajesData = {
+  nunez: {
+    nombre: 'RAFAEL NÚÑEZ',
+    anios: '1825 — 1894',
+    bio: 'Escritor, jurisconsulto y político colombiano. Fue presidente de Colombia en cuatro ocasiones. Lideró el proceso de la Regeneración, impulsó la Constitución de 1886 y es el autor de la letra del Himno Nacional de Colombia.',
+    imagen: 'assets/img/rafael-nunes.jpg',
+    wiki: 'https://es.wikipedia.org/wiki/Rafael_N%C3%BA%C3%B1ez'
+  },
   bolivar: {
     nombre: 'SIMÓN BOLÍVAR',
     anios: '1783 — 1830',
@@ -62,6 +69,7 @@ function getCharacterIdFromTitle(text) {
 
   if (clean.includes('bolivar') || clean.includes('simon')) return 'bolivar';
   if (clean.includes('santander')) return 'santander';
+  if (clean.includes('nunez') || clean.includes('rafael')) return 'nunez';
   if (clean.includes('garzon') || clean.includes('jaime')) return 'garzon';
   if (clean.includes('galan') || clean.includes('antonio')) return 'galan';
   if (clean.includes('gaitan') || clean.includes('eliecer')) return 'gaitan';
