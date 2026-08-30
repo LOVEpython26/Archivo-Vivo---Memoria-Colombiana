@@ -2,6 +2,13 @@
 // Base de Datos Local de Personajes Históricos
 // ==========================================================================
 const personajesData = {
+  bolivar: {
+    nombre: 'SIMÓN BOLÍVAR',
+    anios: '1783 — 1830',
+    bio: 'Militar y político venezolano, líder fundamental de la independencia de Bolivia, Colombia, Ecuador, Panamá, Perú y Venezuela. Conocido como "El Libertador", impulsó la creación de la Gran Colombia y sentó las bases de la organización constitucional hispanoamericana.',
+    imagen: 'assets/img/bolivar.jpg',
+    wiki: 'https://es.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar'
+  },
   policarpa: {
     nombre: 'POLICARPA SALAVARRIETA',
     anios: '1795 — 1817',
@@ -46,14 +53,20 @@ const personajesData = {
  */
 function getCharacterIdFromTitle(text) {
   if (!text) return 'policarpa';
-  const clean = text.toLowerCase();
-  
+
+  // Normalizamos: pasamos a minúsculas y quitamos tildes para evitar fallos
+  const clean = text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  if (clean.includes('bolivar') || clean.includes('simon')) return 'bolivar';
   if (clean.includes('santander')) return 'santander';
-  if (clean.includes('garz') || clean.includes('jaime')) return 'garzon';
-  if (clean.includes('galán') || clean.includes('galan') || clean.includes('antonio')) return 'galan';
-  if (clean.includes('gaitán') || clean.includes('gaitan') || clean.includes('eliécer') || clean.includes('eliecer')) return 'gaitan';
+  if (clean.includes('garzon') || clean.includes('jaime')) return 'garzon';
+  if (clean.includes('galan') || clean.includes('antonio')) return 'galan';
+  if (clean.includes('gaitan') || clean.includes('eliecer')) return 'gaitan';
   if (clean.includes('policarpa') || clean.includes('pola')) return 'policarpa';
-  
+
   return 'policarpa';
 }
 
