@@ -2,6 +2,13 @@
 // Base de Datos Local de Personajes Históricos
 // ==========================================================================
 const personajesData = {
+  mosquera: {
+    nombre: 'TOMÁS CIPRIANO DE MOSQUERA',
+    anios: '1798 — 1878',
+    bio: 'Militar, diplomático y estadista colombiano. Fue presidente de Colombia en cuatro ocasiones. Figura clave del Siglo XIX, conocido como "El Gran General", impulsó reformas liberales, la modernización de la infraestructura y el libre comercio.',
+    imagen: 'assets/img/tomas-mosquera.jpg',
+    wiki: 'https://es.wikipedia.org/wiki/Tom%C3%A1s_Cipriano_de_Mosquera'
+  },
   nunez: {
     nombre: 'RAFAEL NÚÑEZ',
     anios: '1825 — 1894',
@@ -69,6 +76,7 @@ function getCharacterIdFromTitle(text) {
 
   if (clean.includes('bolivar') || clean.includes('simon')) return 'bolivar';
   if (clean.includes('santander')) return 'santander';
+  if (clean.includes('mosquera') || clean.includes('tomas')) return 'mosquera';
   if (clean.includes('nunez') || clean.includes('rafael')) return 'nunez';
   if (clean.includes('garzon') || clean.includes('jaime')) return 'garzon';
   if (clean.includes('galan') || clean.includes('antonio')) return 'galan';
@@ -115,7 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nameEl) nameEl.textContent = data.nombre;
 
     const lifespanEl = document.querySelector('.character-lifespan');
-    if (lifespanEl) lifespanEl.textContent = data.anios;
+    if (lifespanEl) {
+      // Si en el futuro le agregas la propiedad piezas, las mostrará; si no, solo muestra las fechas
+      lifespanEl.textContent = data.piezas 
+      ? `${data.anios} • ${data.piezas} PIEZAS` 
+      : data.anios;
+    }
 
     const bioEl = document.querySelector('.character-bio p');
     if (bioEl) bioEl.textContent = data.bio;
