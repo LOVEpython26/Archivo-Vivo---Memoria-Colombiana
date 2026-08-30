@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Renderizado Dinámico de la Ficha del Personaje (personaje.html)
   // ==========================================================================
   if (characterHero) {
-    // [CORRECCIÓN 1] Validación segura: Si data.js no cargó, no rompemos la página
+    // Validación de seguridad para data.js
     if (typeof personajesData === 'undefined') {
       console.error('Error: El archivo data.js no se cargó o tiene errores de sintaxis.');
       return; 
@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lifespanEl = document.querySelector('.character-lifespan');
     if (lifespanEl) {
       lifespanEl.textContent = data.piezas 
-      ? `${data.anios} • ${data.piezas} PIEZAS` 
-      : data.anios;
+        ? `${data.anios} • ${data.piezas} PIEZAS` 
+        : data.anios;
     }
 
     const bioEl = document.querySelector('.character-bio p');
@@ -75,19 +75,178 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const wikiLinkEl = document.querySelector('.character-wiki-link');
     if (wikiLinkEl) wikiLinkEl.href = data.wiki;
-    
-    // [NUEVO] Lógica para renderizar el video si el personaje lo tiene
-    const videoSection = document.querySelector('.video-section');
-    const videoIframe = document.querySelector('.character-video-iframe');
-    
-    if (videoSection && videoIframe) {
-      if (data.video) {
-        videoIframe.src = data.video;
-        videoSection.style.display = ''; // Mostramos el contenedor
+
+    // Actualización del contador de piezas en la ficha
+    const countText = document.querySelector('.character-pieces-count .count-text');
+    const archiveSection = document.querySelector('.character-archive-section');
+    const totalArchivos = (data.archivos && Array.isArray(data.archivos)) ? data.archivos.length : 0;
+
+    if (countText) {
+      if (totalArchivos === 1) {
+        countText.textContent = '1 ARCHIVO AUDIOVISUAL EN EL FONDO DOCUMENTAL';
+      } else if (totalArchivos > 1) {
+        countText.textContent = `${totalArchivos} PIEZAS HISTÓRICAS EN EL FONDO DOCUMENTAL`;
       } else {
-        videoIframe.src = '';
-        videoSection.style.display = 'none'; // Lo ocultamos si no hay link
+        countText.textContent = '0 PIEZAS EN EL FONDO DOCUMENTAL';
       }
+    }
+
+    // Elementos del Modal / Ventana Flotante
+    const archiveModal = document.getElementById('archive-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalText = document.getElementById('modal-text');
+    const modalBtn = document.getElementById('modal-btn');
+    let lastActiveElement = null;
+
+    const openArchiveModal = (item) => {
+      if (!archiveModal || !item) return;
+
+      lastActiveElement = document.activeElement;
+
+      if (modalImg) {
+        modalImg.src = item.portada;
+        modalImg.alt = item.titulo;
+      }
+      if (modalTitle) modalTitle.textContent = item.titulo || '';
+      if (modalText) modalText.textContent = item.descripcionModal || item.descripcion || '';
+      
+      if (modalBtn) {
+        modalBtn.href = item.url || '#';
+        modalBtn.textContent = item.botonTexto || '▶ Ver en Banrepcultural';
+      }
+
+      archiveModal.classList.add('is-open');
+      archiveModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+
+      const closeBtn = archiveModal.querySelector('.archive-modal-close');
+      if (closeBtn) closeBtn.focus();
+    };
+
+    const closeArchiveModal = () => {
+      if (!archiveModal) return;
+      archiveModal.classList.remove('is-open');
+      archiveModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+
+      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+        lastActiveElement.focus();
+      }
+    };
+
+    if (archiveModal) {
+      archiveModal.querySelectorAll('[data-close-modal]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeArchiveModal();
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && archiveModal.classList.contains('is-open')) {
+          closeArchiveModal();
+        }
+      });
+    }
+
+    // Renderizado dinámico de la tarjeta compacta en el perfil
+    const renderArchiveItems = (filter = 'all') => {
+      if (!archiveSection) return;
+
+      if (!data.archivos || data.archivos.length === 0) {
+        archiveSection.innerHTML = `
+          <div class="empty-archive-state">
+            <p class="empty-archive-msg">PRÓXIMAMENTE PIEZAS DOCUMENTALES DE ESTE PERSONAJE</p>
+          </div>
+        `;
+        return;
+      }
+
+      const filteredItems = filter === 'all' 
+        ? data.archivos 
+        : data.archivos.filter(item => item.tipo.toLowerCase() === filter.toLowerCase());
+
+      if (filteredItems.length === 0) {
+        archiveSection.innerHTML = `
+          <div class="empty-archive-state">
+            <p class="empty-archive-msg">NO SE ENCONTRARON PIEZAS EN ESTA CATEGORÍA</p>
+          </div>
+        `;
+        return;
+      }
+
+      const itemsHtml = filteredItems.map((item, idx) => `
+        <article 
+          class="archive-card" 
+          data-archive-id="${item.id || idx}"
+          data-type="${item.tipo}"
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog"
+          aria-label="Abrir detalles de ${item.titulo}"
+        >
+          <div class="archive-media">
+            <img src="${item.portada}" alt="${item.titulo}" class="archive-img">
+            <span class="archive-badge">${item.badge || item.tipo.toUpperCase()}</span>
+            <div class="archive-card-overlay">
+              <span class="archive-play-hint">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>VER DETALLES</span>
+              </span>
+            </div>
+          </div>
+          <div class="archive-content-compact">
+            <h3 class="archive-title-compact">${item.tituloCorto || item.titulo}</h3>
+            ${item.copyright ? `<p class="archive-copyright">${item.copyright}</p>` : ''}
+          </div>
+        </article>
+      `).join('');
+
+      archiveSection.innerHTML = `<div class="archive-grid">${itemsHtml}</div>`;
+
+      // Eventos de clic y teclado para abrir la ventana flotante (modal)
+      const renderedCards = archiveSection.querySelectorAll('.archive-card');
+      renderedCards.forEach((card, idx) => {
+        const itemData = filteredItems[idx];
+        
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          openArchiveModal(itemData);
+        });
+
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openArchiveModal(itemData);
+          }
+        });
+      });
+    };
+
+    renderArchiveItems('all');
+
+    // Manejo de filtros documentales (TODOS, VIDEO, AUDIO, DOCUMENTOS)
+    const mediaFilterBtns = document.querySelectorAll('.media-filter-btn');
+    if (mediaFilterBtns.length > 0) {
+      mediaFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          mediaFilterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const btnText = btn.textContent.trim().toUpperCase();
+          let filterType = 'all';
+          if (btnText.includes('VIDEO')) filterType = 'video';
+          else if (btnText.includes('AUDIO')) filterType = 'audio';
+          else if (btnText.includes('DOCUMENTO')) filterType = 'documento';
+
+          renderArchiveItems(filterType);
+        });
+      });
     }
 
     const backBtn = document.querySelector('.back-btn');
@@ -213,22 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==========================================================================
-  // 5. Filtros de Piezas Documentales (personaje.html)
-  // ==========================================================================
-  const mediaFilterBtns = document.querySelectorAll('.media-filter-btn');
-  if (mediaFilterBtns.length > 0) {
-    mediaFilterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        mediaFilterBtns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-      });
-    });
-  }
 
   // ==========================================================================
   // 6. Buscador (Comportamiento Diferenciado por Vista)

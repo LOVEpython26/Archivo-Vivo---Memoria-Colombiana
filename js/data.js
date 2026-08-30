@@ -7,55 +7,77 @@ const personajesData = {
     anios: '1798 — 1878',
     bio: 'Militar, diplomático y estadista colombiano. Fue presidente de Colombia en cuatro ocasiones. Figura clave del Siglo XIX, conocido como "El Gran General", impulsó reformas liberales, la modernización de la infraestructura y el libre comercio.',
     imagen: 'assets/img/tomas-mosquera.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Tom%C3%A1s_Cipriano_de_Mosquera'
+    wiki: 'https://es.wikipedia.org/wiki/Tom%C3%A1s_Cipriano_de_Mosquera',
+    archivos: []
   },
   nunez: {
     nombre: 'RAFAEL NÚÑEZ',
     anios: '1825 — 1894',
     bio: 'Escritor, jurisconsulto y político colombiano. Fue presidente de Colombia en cuatro ocasiones. Lideró el proceso de la Regeneración, impulsó la Constitución de 1886 y es el autor de la letra del Himno Nacional de Colombia.',
     imagen: 'assets/img/rafael-nunes.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Rafael_N%C3%BA%C3%B1ez'
+    wiki: 'https://es.wikipedia.org/wiki/Rafael_N%C3%BA%C3%B1ez',
+    archivos: []
   },
   bolivar: {
     nombre: 'SIMÓN BOLÍVAR',
     anios: '1783 — 1830',
     bio: 'Militar y político venezolano, líder fundamental de la independencia de Bolivia, Colombia, Ecuador, Panamá, Perú y Venezuela. Conocido como "El Libertador", impulsó la creación de la Gran Colombia y sentó las bases de la organización constitucional hispanoamericana.',
     imagen: 'assets/img/bolivar.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar'
+    wiki: 'https://es.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar',
+    archivos: []
   },
   policarpa: {
     nombre: 'POLICARPA SALAVARRIETA',
     anios: '1795 — 1817',
     bio: 'Heroína de la Independencia de Colombia, conocida popularmente como «La Pola». Desarrolló labores de inteligencia y espionaje cruciales para las fuerzas patriotas durante la Reconquista española en Santafé de Bogotá, transmitiendo información estratégica, reclutando jóvenes y facilitando suministros a los combatientes independentistas hasta su captura y posterior fusilamiento en la Plaza Mayor.',
     imagen: 'assets/img/policarpa.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Policarpa_Salavarrieta'
+    wiki: 'https://es.wikipedia.org/wiki/Policarpa_Salavarrieta',
+    archivos: []
   },
   santander: {
     nombre: 'FRANCISCO DE PAULA SANTANDER',
     anios: '1792 — 1840',
     bio: 'Conocido como «El Hombre de las Leyes» y «Organizador de la Victoria». Prócer de la independencia, militar y estadista colombiano. Fue vicepresidente de la Gran Colombia y presidente de la República de la Nueva Granada, sentando las bases del sistema educativo público y el orden constitucional de la nación.',
     imagen: 'assets/img/santander.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Francisco_de_Paula_Santander'
+    wiki: 'https://es.wikipedia.org/wiki/Francisco_de_Paula_Santander',
+    archivos: []
   },
   garzon: {
     nombre: 'JAIME GARZÓN',
     anios: '1960 — 1999',
     bio: 'Abogado, pedagogo, humorista, activista por la paz y periodista colombiano. A través de la sátira política y personajes icónicos como «Heriberto de la Calle» y «Dioselina Tibaná», cuestionó con agudeza las estructuras de poder en Colombia y facilitó la liberación de secuestrados antes de ser asesinado en 1999.',
     imagen: 'assets/img/jaime-garzon.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Jaime_Garz%C3%B3n'
+    wiki: 'https://es.wikipedia.org/wiki/Jaime_Garz%C3%B3n',
+    archivos: [
+      {
+        id: 'conferencia-uao-1997',
+        tipo: 'video',
+        badge: 'VIDEO / CONFERENCIA',
+        tituloCorto: 'Conferencia UAO, 1997',
+        titulo: 'Conferencia de Jaime Garzón en la UAO, 1997',
+        copyright: '© Fondo Audiovisual • Banrepcultural / Univ. Autónoma de Occidente',
+        portada: 'assets/img/conferencia-garzon-uao.png',
+        descripcionCorta: 'Registro histórico sobre la pedagogía de la Constitución de 1991.',
+        descripcionModal: 'Emblemática conferencia en la Universidad Autónoma de Occidente donde Jaime Garzón ejerció una lúcida pedagogía sobre el Estado Social de Derecho y la Constitución de 1991, proceso en el que impulsó la apropiación ciudadana de la Carta Política y su histórica traducción a diversas lenguas indígenas.',
+        url: 'https://www.banrepcultural.org/multimedia/jaime-garzon-habla-de-la-constitucion-25-anos-asamblea-nacional-constituyente',
+        botonTexto: '▶ Ver en Banrepcultural'
+      }
+    ]
   },
   galan: {
     nombre: 'LUIS CARLOS GALÁN',
     anios: '1943 — 1989',
     bio: 'Abogado, periodista y político colombiano, oriundo de Bucaramanga, Santander. Fundador del Nuevo Liberalismo, destacó por su férrea oposición al clientelismo, la corrupción y los carteles del narcotráfico. Su oratoria apasionada y su visión de renovación moral del Estado lo convirtieron en uno de los líderes políticos más influyentes y queridos de la historia contemporánea del país, hasta su trágico magnicidio en plena campaña presidencial.',
     imagen: 'assets/img/galan.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Luis_Carlos_Gal%C3%A1n'
+    wiki: 'https://es.wikipedia.org/wiki/Luis_Carlos_Gal%C3%A1n',
+    archivos: []
   },
   gaitan: {
     nombre: 'JORGE ELIÉCER GAITÁN',
     anios: '1898 — 1948',
     bio: 'Jurista, escritor y político colombiano. Conocido como «El Caudillo del Pueblo», su oratoria influyente y su defensa de las causas populares marcaron un hito en la política del siglo XX hasta su magnicidio el 9 de abril de 1948.',
     imagen: 'assets/img/gaitan.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Jorge_Eli%C3%A9cer_Gait%C3%A1n'
+    wiki: 'https://es.wikipedia.org/wiki/Jorge_Eli%C3%A9cer_Gait%C3%A1n',
+    archivos: []
   }
 };
