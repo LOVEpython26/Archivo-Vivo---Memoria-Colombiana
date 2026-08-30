@@ -1,0 +1,188 @@
+/* ==========================================================================
+   MODAL / VENTANA FLOTANTE (DISEÑO MINIMALISTA Y ELEGANTE)
+   ========================================================================== */
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.archive-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.archive-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.archive-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 11, 10, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.archive-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #1a1a1a;
+  border: 1px solid rgba(181, 154, 99, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  z-index: 2;
+  padding: 2.5rem 2.25rem 2.25rem;
+  transform: translateY(14px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.archive-modal.is-open .archive-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.archive-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 34px;
+  height: 34px;
+  background: rgba(35, 33, 30, 0.9);
+  border: 1px solid rgba(181, 154, 99, 0.45);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 0;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.archive-modal-close:hover,
+.archive-modal-close:focus-visible {
+  background: var(--accent-gold);
+  color: #1a1a1a;
+  border-color: var(--accent-gold);
+  transform: scale(1.06);
+  outline: none;
+}
+
+.archive-modal-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.archive-modal-media {
+  width: 100%;
+  max-width: 440px;
+  height: 190px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(181, 154, 99, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.archive-modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.archive-modal-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.archive-modal-title {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.archive-modal-paragraph {
+  color: #D6CFBE;
+  font-size: 0.885rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 440px;
+}
+
+.archive-modal-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.archive-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 2.25rem;
+  background: var(--accent-gold);
+  color: #1a1a1a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--accent-gold);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.archive-modal-btn:hover,
+.archive-modal-btn:focus-visible {
+  background: transparent;
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(181, 154, 99, 0.25);
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .archive-modal-dialog {
+    padding: 2.25rem 1.25rem 1.75rem;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+
+  .archive-modal-media {
+    height: 150px;
+  }
+
+  .archive-modal-title {
+    font-size: 1.05rem;
+  }
+
+  .archive-modal-paragraph {
+    font-size: 0.825rem;
+    line-height: 1.55;
+  }
+}

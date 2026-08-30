@@ -1,0 +1,217 @@
+/* ==========================================================================
+   VISTA DEL CATÁLOGO
+   ========================================================================== */
+
+.catalog-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Botón Volver */
+.catalog-top-nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.15rem;
+  background: var(--header-bg);
+  color: var(--text-primary);
+  border: 1px solid rgba(181, 154, 99, 0.4);
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.back-btn:hover {
+  background: rgba(181, 154, 99, 0.15);
+  border-color: var(--accent-gold);
+  transform: translateX(-3px);
+}
+
+.back-icon {
+  color: var(--accent-gold);
+}
+
+/* Filtros de Épocas Históricas */
+.catalog-filters {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 3.5rem;
+}
+
+.filter-btn {
+  padding: 0.65rem 1.5rem;
+  background: var(--header-bg);
+  color: var(--text-secondary);
+  border: 1px solid rgba(181, 154, 99, 0.35);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.filter-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--text-primary);
+  background: rgba(53, 50, 45, 0.9);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: var(--accent-gold);
+  color: var(--btn-text);
+  border-color: var(--accent-gold);
+  font-weight: 600;
+}
+
+/* Secciones y Grilla */
+.catalog-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.catalog-section {
+  width: 100%;
+}
+
+.section-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--accent-gold),
+      rgba(181, 154, 99, 0.1)
+    );
+}
+
+.cards-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.25rem;
+}
+
+.cards-grid .card {
+  width: var(--card-width);
+  height: var(--card-height);
+  flex: 0 0 var(--card-width);
+  opacity: 1;
+  transform: none;
+  display: flex;
+}
+
+.cards-grid .card .card-img {
+  filter: grayscale(100%) brightness(0.65);
+}
+
+.cards-grid .card:hover {
+  transform: translateY(-4px);
+}
+
+.cards-grid .card:hover .card-media {
+  border-color: var(--accent-gold);
+}
+
+.cards-grid .card:hover .card-img {
+  filter: grayscale(100%) brightness(0.95);
+}
+
+.catalog-footer {
+  border-top: 1px solid rgba(181, 154, 99, 0.15);
+}
+
+.footer-text {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .catalog-main {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .catalog-filters {
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    font-size: 0.7rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  .section-header {
+    gap: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  .cards-grid {
+    justify-content: center;
+  }
+
+  .cards-grid .card {
+    width: var(--card-width);
+    flex-basis: var(--card-width);
+  }
+}

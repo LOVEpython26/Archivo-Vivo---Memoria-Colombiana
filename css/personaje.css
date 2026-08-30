@@ -1,0 +1,354 @@
+/* ==========================================================================
+   VISTA DEL PERSONAJE (FICHA HISTÓRICA)
+   ========================================================================== */
+
+.character-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.character-nav-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.media-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.media-filter-btn {
+  padding: 0.55rem 1.35rem;
+  background: var(--header-bg);
+  color: var(--text-secondary);
+  border: 1px solid rgba(181, 154, 99, 0.35);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.media-filter-btn.active {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-color: var(--btn-bg);
+}
+
+
+/* ==========================================================================
+   HERO PERSONAJE
+   ========================================================================== */
+
+.character-hero {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2.75rem;
+  align-items: start;
+}
+
+.character-portrait-wrapper {
+  width: 100%;
+  max-width: 240px;
+}
+
+.character-portrait-frame {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  border: 1px solid var(--accent-gold);
+  background: var(--card-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+}
+
+.character-portrait-frame:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.character-portrait-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) brightness(0.95);
+  transition: transform var(--transition-normal);
+}
+
+.character-portrait-frame:hover .character-portrait-img {
+  transform: scale(1.03);
+}
+
+.character-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.character-name {
+  color: var(--text-primary);
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.character-lifespan {
+  color: var(--accent-gold);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.character-bio {
+  max-width: 720px;
+  color: #D6CFBE;
+  font-size: 0.975rem;
+  line-height: 1.75;
+}
+
+.character-wiki-link {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(243, 239, 231, 0.4);
+  padding-bottom: 0.25rem;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.character-wiki-link:hover,
+.character-wiki-link:focus-visible {
+  color: var(--accent-gold);
+  border-bottom-color: var(--accent-gold);
+}
+
+.character-wiki-link:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 0.35rem;
+}
+
+.character-pieces-count {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.count-text {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  background: rgba(181, 154, 99, 0.12);
+  border: 1px solid rgba(181, 154, 99, 0.4);
+  color: var(--accent-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   SECCIÓN DEL FONDO DOCUMENTAL
+   ========================================================================== */
+
+.character-archive-section {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.empty-archive-state {
+  width: 100%;
+  padding: 4.5rem 2rem;
+  border: 1px dashed rgba(181, 154, 99, 0.3);
+  background: rgba(43, 41, 37, 0.4);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-archive-msg {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   TARJETA MINIMALISTA DE ARCHIVO (PERFIL)
+   ========================================================================== */
+.archive-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 320px));
+  gap: 2rem;
+  justify-content: start;
+}
+
+.archive-card--minimal {
+  background: var(--header-bg);
+  border: 1px solid rgba(181, 154, 99, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), 
+              border-color var(--transition-fast), 
+              box-shadow 0.3s ease;
+}
+
+.archive-card--minimal:hover,
+.archive-card--minimal:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.archive-card--minimal .archive-media {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.archive-card--minimal .archive-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.archive-card--minimal:hover .archive-img {
+  transform: scale(1.03);
+}
+
+.archive-badge-minimal {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(22, 21, 19, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: var(--accent-gold);
+  border: 1px solid rgba(181, 154, 99, 0.4);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 2;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.archive-card--minimal:hover .archive-badge-minimal {
+  border-color: var(--accent-gold);
+  background: rgba(22, 21, 19, 0.95);
+}
+
+.play-icon-mini {
+  fill: var(--accent-gold);
+}
+
+.archive-caption {
+  padding: 0.9rem 1.15rem 1.1rem;
+  background: var(--header-bg);
+  border-top: 1px solid rgba(181, 154, 99, 0.15);
+}
+
+.archive-title-minimal {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.archive-card--minimal:hover .archive-title-minimal {
+  color: var(--accent-gold);
+}
+
+@media (max-width: 1024px) {
+  .character-hero {
+    grid-template-columns: 220px 1fr;
+    gap: 2rem;
+  }
+
+  .character-portrait-wrapper {
+    max-width: 220px;
+  }
+
+  .character-portrait-frame {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .character-hero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .character-portrait-wrapper {
+    max-width: 200px;
+  }
+
+  .character-portrait-frame {
+    height: 200px;
+  }
+
+  .character-details {
+    align-items: center;
+  }
+
+  .character-name {
+    font-size: 1.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .character-nav-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .media-filters {
+    justify-content: center;
+  }
+}

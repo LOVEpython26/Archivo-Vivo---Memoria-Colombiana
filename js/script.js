@@ -1,7 +1,13 @@
 /**
- * Determina la clave del personaje según el título o nombre encontrado
- * @param {string} text - Texto del título o nombre del personaje
- * @returns {string} - Clave del personaje
+ * ==========================================================================
+ * ARCHIVO VIVO — SCRIPT PRINCIPAL (LEGACY BRIDGE / FALLBACK)
+ * Los módulos específicos se encuentran desacoplados en:
+ *  - js/data.js      -> Base de datos documental
+ *  - js/common.js    -> Utilidades comunes y buscador del Header
+ *  - js/carousel.js  -> Carrusel interactivo (index.html)
+ *  - js/catalogo.js  -> Filtros y búsqueda en tiempo real (catalogo.html)
+ *  - js/personaje.js -> Perfil histórico y modal interactivo (personaje.html)
+ * ==========================================================================
  */
 function getCharacterIdFromTitle(text) {
   if (!text) return 'policarpa';

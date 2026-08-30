@@ -1,0 +1,187 @@
+/* ==========================================================================
+   PÁGINA PRINCIPAL / CARRUSEL
+   ========================================================================== */
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.carousel-section {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.carousel-btn {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(43, 41, 37, 0.85);
+  border: 1px solid rgba(181, 154, 99, 0.35);
+  color: var(--text-secondary);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.carousel-btn:hover {
+  background: rgba(53, 50, 45, 0.95);
+  border-color: var(--accent-gold);
+  color: var(--text-primary);
+  transform: scale(1.06);
+}
+
+.carousel-btn:active {
+  transform: scale(0.96);
+}
+
+.carousel-track {
+  width: calc((var(--card-width) * 3) + 4.5rem);
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Tarjeta anterior */
+.carousel-track .card.prev {
+  opacity: 0.65;
+  transform: scale(0.94);
+  order: 1;
+}
+
+/* Tarjeta central activa */
+.carousel-track .card.active {
+  opacity: 1;
+  transform: translateY(-4px) scale(1);
+  z-index: 2;
+  order: 2;
+}
+
+.carousel-track .card.active .card-img {
+  filter: grayscale(100%) brightness(0.95);
+}
+
+.carousel-track .card.active .card-media {
+  border-color: var(--accent-gold);
+}
+
+/* Tarjeta siguiente */
+.carousel-track .card.next {
+  opacity: 0.65;
+  transform: scale(0.94);
+  order: 3;
+}
+
+.carousel-track .card:not(.prev):not(.active):not(.next) {
+  display: none;
+}
+
+/* Dots de paginación */
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  opacity: 0.4;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.dot:hover {
+  opacity: 0.85;
+}
+
+.dot.active {
+  background: var(--accent-gold);
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --card-width: 230px;
+    --card-height: 340px;
+  }
+
+  .carousel {
+    gap: 1rem;
+  }
+
+  .carousel-track {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    gap: 0.5rem;
+  }
+
+  .carousel-track {
+    width: var(--card-width);
+    padding: 1rem 0;
+    overflow: hidden;
+  }
+
+  .carousel-track .card.prev,
+  .carousel-track .card.next {
+    display: none;
+  }
+
+  .carousel-track .card.active {
+    display: flex;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+  }
+
+  .carousel-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}

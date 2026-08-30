@@ -1,0 +1,87 @@
+/* ==========================================================================
+   TARJETAS HISTÓRICAS
+   ========================================================================== */
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  flex: 0 0 var(--card-width);
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.65;
+  transform: scale(0.94);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.45s ease,
+    filter 0.45s ease;
+}
+
+.card-media {
+  width: 100%;
+  height: var(--card-height);
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) brightness(0.5);
+  transition:
+    filter 0.45s ease,
+    transform 0.45s ease;
+}
+
+.card:hover .card-img {
+  transform: scale(1.03);
+}
+
+.card:not(.active):hover .card-img {
+  filter: grayscale(100%) brightness(0.7);
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 3rem 1.25rem 1.25rem;
+  text-align: center;
+  background:
+    linear-gradient(
+      to top,
+      rgba(53, 50, 45, 0.95) 0%,
+      rgba(53, 50, 45, 0.65) 55%,
+      transparent 100%
+    );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card-title {
+  margin-bottom: 0.35rem;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.card-meta {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
