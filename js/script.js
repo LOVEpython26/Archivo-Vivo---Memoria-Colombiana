@@ -1,65 +1,3 @@
-// ==========================================================================
-// Base de Datos Local de Personajes Históricos
-// ==========================================================================
-const personajesData = {
-  mosquera: {
-    nombre: 'TOMÁS CIPRIANO DE MOSQUERA',
-    anios: '1798 — 1878',
-    bio: 'Militar, diplomático y estadista colombiano. Fue presidente de Colombia en cuatro ocasiones. Figura clave del Siglo XIX, conocido como "El Gran General", impulsó reformas liberales, la modernización de la infraestructura y el libre comercio.',
-    imagen: 'assets/img/tomas-mosquera.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Tom%C3%A1s_Cipriano_de_Mosquera'
-  },
-  nunez: {
-    nombre: 'RAFAEL NÚÑEZ',
-    anios: '1825 — 1894',
-    bio: 'Escritor, jurisconsulto y político colombiano. Fue presidente de Colombia en cuatro ocasiones. Lideró el proceso de la Regeneración, impulsó la Constitución de 1886 y es el autor de la letra del Himno Nacional de Colombia.',
-    imagen: 'assets/img/rafael-nunes.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Rafael_N%C3%BA%C3%B1ez'
-  },
-  bolivar: {
-    nombre: 'SIMÓN BOLÍVAR',
-    anios: '1783 — 1830',
-    bio: 'Militar y político venezolano, líder fundamental de la independencia de Bolivia, Colombia, Ecuador, Panamá, Perú y Venezuela. Conocido como "El Libertador", impulsó la creación de la Gran Colombia y sentó las bases de la organización constitucional hispanoamericana.',
-    imagen: 'assets/img/bolivar.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar'
-  },
-  policarpa: {
-    nombre: 'POLICARPA SALAVARRIETA',
-    anios: '1795 — 1817',
-    bio: 'Heroína de la Independencia de Colombia, conocida popularmente como «La Pola». Desarrolló labores de inteligencia y espionaje cruciales para las fuerzas patriotas durante la Reconquista española en Santafé de Bogotá, transmitiendo información estratégica, reclutando jóvenes y facilitando suministros a los combatientes independentistas hasta su captura y posterior fusilamiento en la Plaza Mayor.',
-    imagen: 'assets/img/policarpa.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Policarpa_Salavarrieta'
-  },
-  santander: {
-    nombre: 'FRANCISCO DE PAULA SANTANDER',
-    anios: '1792 — 1840',
-    bio: 'Conocido como «El Hombre de las Leyes» y «Organizador de la Victoria». Prócer de la independencia, militar y estadista colombiano. Fue vicepresidente de la Gran Colombia y presidente de la República de la Nueva Granada, sentando las bases del sistema educativo público y el orden constitucional de la nación.',
-    imagen: 'assets/img/santander.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Francisco_de_Paula_Santander'
-  },
-  garzon: {
-    nombre: 'JAIME GARZÓN',
-    anios: '1960 — 1999',
-    bio: 'Abogado, pedagogo, humorista, activista por la paz y periodista colombiano. A través de la sátira política y personajes icónicos como «Heriberto de la Calle» y «Dioselina Tibaná», cuestionó con agudeza las estructuras de poder en Colombia y facilitó la liberación de secuestrados antes de ser asesinado en 1999.',
-    imagen: 'assets/img/jaime-garzon.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Jaime_Garz%C3%B3n'
-  },
-  galan: {
-    nombre: 'LUIS CARLOS GALÁN',
-    anios: '1943 — 1989',
-    bio: 'Abogado, periodista y político colombiano, oriundo de Bucaramanga, Santander. Fundador del Nuevo Liberalismo, destacó por su férrea oposición al clientelismo, la corrupción y los carteles del narcotráfico. Su oratoria apasionada y su visión de renovación moral del Estado lo convirtieron en uno de los líderes políticos más influyentes y queridos de la historia contemporánea del país, hasta su trágico magnicidio en plena campaña presidencial.',
-    imagen: 'assets/img/galan.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Luis_Carlos_Gal%C3%A1n'
-  },
-  gaitan: {
-    nombre: 'JORGE ELIÉCER GAITÁN',
-    anios: '1898 — 1948',
-    bio: 'Jurista, escritor y político colombiano. Conocido como «El Caudillo del Pueblo», su oratoria influyente y su defensa de las causas populares marcaron un hito en la política del siglo XX hasta su magnicidio el 9 de abril de 1948.',
-    imagen: 'assets/img/gaitan.jpg',
-    wiki: 'https://es.wikipedia.org/wiki/Jorge_Eli%C3%A9cer_Gait%C3%A1n'
-  }
-};
-
 /**
  * Determina la clave del personaje según el título o nombre encontrado
  * @param {string} text - Texto del título o nombre del personaje
@@ -68,7 +6,6 @@ const personajesData = {
 function getCharacterIdFromTitle(text) {
   if (!text) return 'policarpa';
 
-  // Normalizamos: pasamos a minúsculas y quitamos tildes para evitar fallos
   const clean = text
     .toLowerCase()
     .normalize("NFD")
@@ -87,10 +24,8 @@ function getCharacterIdFromTitle(text) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Variable global para saber si estamos en el catálogo
   const isCatalog = window.location.pathname.toLowerCase().includes('catalogo') || document.querySelector('.catalog-main') !== null;
 
-  // Referencias a los elementos del DOM
   const cards = document.querySelectorAll('.card');
   const dots = document.querySelectorAll('.dot');
   const prevBtn = document.querySelector('.prev-btn');
@@ -105,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Renderizado Dinámico de la Ficha del Personaje (personaje.html)
   // ==========================================================================
   if (characterHero) {
+    // [CORRECCIÓN 1] Validación segura: Si data.js no cargó, no rompemos la página
+    if (typeof personajesData === 'undefined') {
+      console.error('Error: El archivo data.js no se cargó o tiene errores de sintaxis.');
+      return; 
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const characterId = urlParams.get('id');
     const fromPage = urlParams.get('from'); 
@@ -124,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const lifespanEl = document.querySelector('.character-lifespan');
     if (lifespanEl) {
-      // Si en el futuro le agregas la propiedad piezas, las mostrará; si no, solo muestra las fechas
       lifespanEl.textContent = data.piezas 
       ? `${data.anios} • ${data.piezas} PIEZAS` 
       : data.anios;
@@ -136,6 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const wikiLinkEl = document.querySelector('.character-wiki-link');
     if (wikiLinkEl) wikiLinkEl.href = data.wiki;
     
+    // [NUEVO] Lógica para renderizar el video si el personaje lo tiene
+    const videoSection = document.querySelector('.video-section');
+    const videoIframe = document.querySelector('.character-video-iframe');
+    
+    if (videoSection && videoIframe) {
+      if (data.video) {
+        videoIframe.src = data.video;
+        videoSection.style.display = ''; // Mostramos el contenedor
+      } else {
+        videoIframe.src = '';
+        videoSection.style.display = 'none'; // Lo ocultamos si no hay link
+      }
+    }
+
     const backBtn = document.querySelector('.back-btn');
     if (backBtn) {
       if (fromPage === 'index') {
@@ -152,138 +106,67 @@ document.addEventListener('DOMContentLoaded', () => {
   let updateCarousel = null;
 
   if (cards.length > 0 && dots.length > 0 && (prevBtn || nextBtn)) {
-
     let currentIndex = Array.from(cards).findIndex(card =>
       card.classList.contains('active')
     );
 
-    if (currentIndex === -1) {
-      currentIndex = 0;
-    }
+    if (currentIndex === -1) currentIndex = 0;
 
     updateCarousel = function(index) {
       if (!cards.length) return;
 
-      // ------------------------------------------------------------
-      // Índice circular
-      // ------------------------------------------------------------
       currentIndex = ((index % cards.length) + cards.length) % cards.length;
+      const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+      const nextIndex = (currentIndex + 1) % cards.length;
 
-      // Índices anterior y siguiente también circulares
-      const prevIndex =
-        (currentIndex - 1 + cards.length) % cards.length;
-
-      const nextIndex =
-        (currentIndex + 1) % cards.length;
-
-      // ------------------------------------------------------------
-      // Actualizar TODAS las tarjetas
-      // ------------------------------------------------------------
       cards.forEach((card, i) => {
-
-        // Eliminar posiciones anteriores
-        card.classList.remove(
-          'prev',
-          'active',
-          'next',
-          'highlight'
-        );
-
-        // Asignar nueva posición
-        if (i === currentIndex) {
-          card.classList.add('active', 'highlight');
-        }
-        else if (i === prevIndex) {
-          card.classList.add('prev');
-        }
-        else if (i === nextIndex) {
-          card.classList.add('next');
-        }
+        card.classList.remove('prev', 'active', 'next', 'highlight');
+        if (i === currentIndex) card.classList.add('active', 'highlight');
+        else if (i === prevIndex) card.classList.add('prev');
+        else if (i === nextIndex) card.classList.add('next');
       });
 
-      // ------------------------------------------------------------
-      // Actualizar indicadores
-      // ------------------------------------------------------------
       dots.forEach((dot, i) => {
         const isActive = i === currentIndex;
-
         dot.classList.toggle('active', isActive);
-        dot.setAttribute(
-          'aria-selected',
-          isActive ? 'true' : 'false'
-        );
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
 
-      // ------------------------------------------------------------
-      // Sincronizar el contenido visual de la tarjeta activa
-      // ------------------------------------------------------------
       const activeCard = cards[currentIndex];
-
       if (activeCard) {
-
-        // Imagen
         const image = activeCard.querySelector('img');
-
-        if (image) {
-          image.style.display = '';
-        }
-
-        // Guardar el personaje actualmente activo
-        activeCard.setAttribute(
-          'aria-current',
-          'true'
-        );
-
-        // Asegurar que las demás tarjetas no sean la actual
+        if (image) image.style.display = '';
+        activeCard.setAttribute('aria-current', 'true');
         cards.forEach((card, i) => {
-          if (i !== currentIndex) {
-            card.removeAttribute('aria-current');
-          }
+          if (i !== currentIndex) card.removeAttribute('aria-current');
         });
       }
     };
 
-    // ------------------------------------------------------------
-    // Botón ANTERIOR
-    // ------------------------------------------------------------
     if (prevBtn) {
       prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
+        e.preventDefault(); e.stopPropagation();
         updateCarousel(currentIndex - 1);
       });
     }
 
-    // ------------------------------------------------------------
-    // Botón SIGUIENTE
-    // ------------------------------------------------------------
     if (nextBtn) {
       nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
+        e.preventDefault(); e.stopPropagation();
         updateCarousel(currentIndex + 1);
       });
     }
 
-    // ------------------------------------------------------------
-    // Indicadores / puntos
-    // ------------------------------------------------------------
     dots.forEach((dot, index) => {
       dot.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
+        e.preventDefault(); e.stopPropagation();
         updateCarousel(index);
       });
     });
 
-    // ------------------------------------------------------------
-    // Estado inicial
-    // ------------------------------------------------------------
     updateCarousel(currentIndex);
   }
+
   // ==========================================================================
   // 2. Navegación e Interactividad de las Tarjetas (.card)
   // ==========================================================================
@@ -298,8 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel(index); 
       } 
       else {
+        // [CORRECCIÓN 2] Ahora busca en más etiquetas (h1, h4, span, p) por si armaste la tarjeta diferente
         const charId = card.getAttribute('data-id') || getCharacterIdFromTitle(
-          card.querySelector('.card-title, h2, h3')?.textContent?.trim() || ''
+          card.querySelector('.card-title, h1, h2, h3, h4, span, p')?.textContent?.trim() || ''
         );
         window.location.href = `personaje.html?id=${charId}&from=${fromParam}`;
       }
@@ -319,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         catalogSections.forEach(section => {
           const sectionCategory = section.getAttribute('data-category');
-
           if (filterValue === 'all' || sectionCategory === filterValue) {
             section.style.display = '';
           } else {
@@ -353,29 +236,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput && searchForm) {
     
     const filterCatalogCards = (query) => {
-      // 1. Limpiamos la búsqueda del usuario (quitamos tildes)
       const queryLimpio = query.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
       cards.forEach(card => {
         const titleEl = card.querySelector('.card-title, h2, h3');
-        // 2. Limpiamos también el título de la tarjeta (quitamos tildes y pasamos a minúsculas)
         const titleText = titleEl 
         ? titleEl.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") 
         : '';
       
-        // 3. Comparamos los dos textos ya limpios
         if (titleText.includes(queryLimpio)) {
           card.style.display = '';
-      
         } else {
           card.style.display = 'none';
-      
         }
       });
 
       if (catalogSections.length > 0) {
         catalogSections.forEach(section => {
-          const visibleCards = section.querySelectorAll('.card:not([style*="display: none"])');
+          // [CORRECCIÓN 3] Evita el fallo en navegadores que quitan los espacios en el atributo style
+          const visibleCards = Array.from(section.querySelectorAll('.card')).filter(c => c.style.display !== 'none');
+          
           if (visibleCards.length === 0 && query !== '') {
             section.style.display = 'none';
           } else {
