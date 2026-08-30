@@ -950,21 +950,21 @@ body {
 
   display: grid;
 
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 240px 1fr;
 
-  gap: 3.5rem;
+  gap: 2.75rem;
 
   align-items: start;
 }
 
 .character-portrait-wrapper {
   width: 100%;
-  max-width: 340px;
+  max-width: 240px;
 }
 
 .character-portrait-frame {
   width: 100%;
-  height: 460px;
+  height: 240px;
 
   overflow: hidden;
 
@@ -972,7 +972,14 @@ body {
 
   background: var(--card-bg);
 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+}
+
+.character-portrait-frame:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
 }
 
 .character-portrait-img {
@@ -990,19 +997,7 @@ body {
 }
 
 .character-portrait-frame:hover .character-portrait-img {
-  transform: scale(1.02);
-}
-
-.character-portrait-frame {
-  overflow: hidden;
-  background: var(--card-bg);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
-  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
-}
-
-.character-portrait-frame:hover {
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.34);
-  transform: translateY(-2px);
+  transform: scale(1.03);
 }
 
 .character-details {
@@ -1151,13 +1146,17 @@ body {
   }
 
   .character-hero {
-    grid-template-columns: 290px 1fr;
+    grid-template-columns: 220px 1fr;
 
-    gap: 2.5rem;
+    gap: 2rem;
+  }
+
+  .character-portrait-wrapper {
+    max-width: 220px;
   }
 
   .character-portrait-frame {
-    height: 400px;
+    height: 220px;
   }
 }
 
@@ -1273,7 +1272,7 @@ body {
   .character-hero {
     grid-template-columns: 1fr;
 
-    gap: 2.25rem;
+    gap: 1.75rem;
 
     justify-items: center;
 
@@ -1281,11 +1280,11 @@ body {
   }
 
   .character-portrait-wrapper {
-    max-width: 280px;
+    max-width: 200px;
   }
 
   .character-portrait-frame {
-    height: 380px;
+    height: 200px;
   }
 
   .character-details {
